@@ -117,6 +117,15 @@ a{color:inherit}
 .author .creds{color:var(--copper);font-weight:700;letter-spacing:.14em;margin-bottom:22px}
 .author p{font-size:1.15rem;color:#E4DED6}
 .author .handle{margin-top:28px;font-weight:700}
+.author .role{font-size:1.2rem;color:var(--ivory);margin-bottom:10px}
+.author .glance-h{font-family:Cinzel,serif;font-weight:500;color:var(--copper);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;margin:34px 0 6px}
+.glance>div{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid #46464d}
+.glance dt{color:var(--copper);font-weight:700;font-size:1rem}
+.glance dd{margin:0}
+.glance b{display:block;color:var(--ivory);font-size:1.05rem;line-height:1.35}
+.glance span{display:block;color:#b9b3aa;font-size:.95rem}
+.author .edu{font-size:.98rem;color:#b9b3aa;margin-top:16px}
+@media(max-width:520px){.glance>div{grid-template-columns:1fr;gap:2px}}
 
 /* get copy */
 .get{padding:96px 0;position:relative}
@@ -148,6 +157,15 @@ a{color:inherit}
 .bars i{display:block;width:44px;background:var(--copper)}
 
 /* footer */
+.consult{background:var(--ivory);padding:72px 0;border-top:6px solid var(--copper)}
+.consult .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.consult .eyebrow{font-family:Cinzel,serif;font-weight:500;color:var(--gold-text);letter-spacing:.3em}
+.consult h2{font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.15;color:var(--charcoal);margin:12px 0 14px;max-width:24ch}
+.consult h2 a{color:var(--gold-text);text-decoration:none;border-bottom:3px solid var(--copper);overflow-wrap:anywhere}
+.consult .topics{color:#5a554d;font-size:.98rem}
+.btn-mail{display:inline-block;background:var(--charcoal);color:var(--ivory);padding:18px 30px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;font-size:.92rem;border:2px solid var(--charcoal)}
+.btn-mail:hover{background:var(--copper);border-color:var(--copper);color:var(--charcoal)}
+@media(max-width:760px){.consult .wrap{grid-template-columns:1fr}}
 footer{background:var(--charcoal);color:var(--ivory);border-top:8px solid var(--copper);padding:64px 0}
 footer .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
 footer img{width:min(100%,360px)}
@@ -245,8 +263,17 @@ footer p{color:#cfc9c0;margin:10px 0 24px}
     <div class="txt">
       <p class="eyebrow">About the author</p>
       <h2>Philips Ayeni</h2>
-      <p class="creds">ACIB · BIDA™ · FMVA®</p>
+      <p class="role">Economist, Chartered Banker and Managing Director of Second Wallet Nigeria Ltd.</p>
+      <p class="creds">ACIB · FMVA® · BIDA™ · MICA · MCILRM</p>
       <p>Managing Director of Second Wallet Nigeria Ltd., a community lending company in Ilorin, and a Chartered Banker with over a decade in research, analytics and fintech. He is married with two children.</p>
+      <h3 class="glance-h">Career at a glance</h3>
+      <dl class="glance">
+        <div><dt>2021 – now</dt><dd><b>Managing Director</b><span>Second Wallet Nigeria Ltd., Ilorin</span></dd></div>
+        <div><dt>2020 – 2021</dt><dd><b>Chief Compliance Officer</b><span>Second Wallet Nigeria Ltd.</span></dd></div>
+        <div><dt>2019 – 2020</dt><dd><b>Data Analyst, then Operations Team Lead</b><span>OPay QR, Opera Group</span></dd></div>
+        <div><dt>2013 – 2019</dt><dd><b>Chief Data Analyst</b><span>Beckphils Consult · Non-Executive Director since 2015</span></dd></div>
+      </dl>
+      <p class="edu">B.Sc. Economics, University of Jos</p>
       <p class="handle">@ThePhilipsAyeni</p>
     </div>
   </div>
@@ -284,6 +311,17 @@ footer p{color:#cfc9c0;margin:10px 0 24px}
       <div class="row"><a class="btn" href="mailto:thephilipsayeni@gmail.com?subject=Bankable%20updates">Be first to know</a><span>Email thephilipsayeni@gmail.com</span></div>
     </div>
     <div class="bars" aria-hidden="true"><i style="height:30%;opacity:.45"></i><i style="height:50%;opacity:.6"></i><i style="height:70%;opacity:.75"></i><i style="height:88%;opacity:.88"></i><i style="height:100%"></i></div>
+  </div>
+</section>
+
+<section class="consult" id="consultation">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Consultation</p>
+      <h2>For consultation, send an email to <a href="mailto:thephilipsayeni@gmail.com?subject=Consultation%20request">thephilipsayeni@gmail.com</a></h2>
+      <p class="topics">Become bankable · Structure &amp; governance · Leadership &amp; culture · Data for decisions</p>
+    </div>
+    <a class="btn-mail" href="mailto:thephilipsayeni@gmail.com?subject=Consultation%20request">Send an email</a>
   </div>
 </section>
 
