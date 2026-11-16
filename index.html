@@ -48,6 +48,15 @@ a{color:inherit}
 .hero h1 .g{display:block;font-size:1.25em;color:var(--saffron)}
 .hero .sub{font-size:clamp(1.1rem,2vw,1.45rem);max-width:30ch;margin:28px 0 34px;color:#E4D8F5}
 .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .sub{margin-bottom:26px}
+.countdown{margin:0 0 30px}
+.countdown .lbl{font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:.74rem;color:var(--saffron);margin-bottom:12px}
+.countdown .boxes{display:flex;gap:10px;flex-wrap:wrap}
+.countdown .box{min-width:78px;padding:12px 10px 10px;text-align:center;background:rgba(242,169,59,.08);border:1px solid rgba(242,169,59,.4)}
+.countdown .num{display:block;font-family:Anton,Impact,sans-serif;font-size:2.4rem;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.countdown .u{display:block;margin-top:6px;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#cdbbe8}
+.countdown .out{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:1.8rem;color:var(--saffron)}
+@media(max-width:520px){.countdown .box{min-width:0;flex:1;padding:10px 4px}.countdown .num{font-size:2rem}.countdown .boxes{flex-wrap:nowrap;gap:8px}}
 .hero .stage{position:relative;justify-self:center;width:min(100%,380px)}
 .hero .stage::before{content:"";position:absolute;inset:-40px -30px 20% -30px;border:3px solid #4a3340;border-bottom:0;border-radius:999px 999px 0 0}
 .hero .stage .book{position:relative}
@@ -175,8 +184,17 @@ footer p{color:#cfc9c0;margin:10px 0 24px}
       <p class="eyebrow">A new book by Philips Ayeni</p>
       <h1 class="display"><small>The Mystery of the</small><span class="w">Destiny</span><span class="g">Midwives</span></h1>
       <p class="sub">Why every great destiny needs someone willing to believe, invest and take a gamble.</p>
+      <div class="countdown" id="countdown" data-launch="2026-12-05T00:00:00+01:00" aria-live="off">
+        <p class="lbl" id="cd-label">Launching in</p>
+        <div class="boxes" id="cd-boxes">
+          <div class="box"><span class="num" id="cd-d">--</span><span class="u">Days</span></div>
+          <div class="box"><span class="num" id="cd-h">--</span><span class="u">Hours</span></div>
+          <div class="box"><span class="num" id="cd-m">--</span><span class="u">Mins</span></div>
+          <div class="box"><span class="num" id="cd-s">--</span><span class="u">Secs</span></div>
+        </div>
+      </div>
       <div class="cta">
-        <a class="btn btn-fill" href="#get">Launching 5 December 2026</a>
+        <a class="btn btn-fill" id="cd-btn" href="#get">Launching 5 December 2026</a>
         <a class="btn btn-line" href="#get">Paperback · eBook · US $10</a>
       </div>
     </div>
@@ -286,5 +304,31 @@ footer p{color:#cfc9c0;margin:10px 0 24px}
   <p class="copy">© 2026 Philips Ayeni · ThePhilipsAyeni</p>
 </footer>
 
+<script>
+(function(){
+  var root=document.getElementById('countdown'); if(!root) return;
+  var target=new Date(root.getAttribute('data-launch')).getTime();
+  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  var boxes=document.getElementById('cd-boxes'),label=document.getElementById('cd-label'),btn=document.getElementById('cd-btn');
+  var timer;
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){
+      clearInterval(timer);
+      label.textContent='The wait is over';
+      boxes.innerHTML='<p class="out">The book is out now</p>';
+      btn.textContent='Get your copy';
+      return;
+    }
+    var sec=Math.floor(diff/1000);
+    d.textContent=Math.floor(sec/86400);
+    h.textContent=pad(Math.floor(sec%86400/3600));
+    m.textContent=pad(Math.floor(sec%3600/60));
+    s.textContent=pad(sec%60);
+  }
+  tick(); timer=setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>

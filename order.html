@@ -111,9 +111,32 @@ button:hover{background:#ffbd55}
       </div>
       <label class="consent"><input type="checkbox" name="consent" value="yes" required> I agree that my details may be used to process and deliver my order.</label>
       <button type="submit">Place my order</button>
+      <p id="form-msg" class="note" role="alert" style="color:#a3262a"></p>
       <p class="note">Prefer email? <a href="mailto:thephilipsayeni@gmail.com?subject=Paperback%20order">thephilipsayeni@gmail.com</a></p>
     </form>
   </section>
 </main>
+<script>
+// Paste the Google Apps Script web-app URL (ends in /exec) between the quotes to send orders to the Google Sheet.
+// While it is empty, the form falls back to Netlify Forms so no order is lost.
+var ORDER_ENDPOINT = '';
+(function(){
+  var form=document.querySelector('form[name="paperback-order"]');
+  if(!form||!ORDER_ENDPOINT) return;
+  var btn=form.querySelector('button[type="submit"]'), msg=document.getElementById('form-msg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending…'; msg.textContent='';
+    var data=new URLSearchParams(new FormData(form));
+    fetch(ORDER_ENDPOINT,{method:'POST',mode:'no-cors',body:data})
+      .then(function(){ window.location.href='/thank-you'; })
+      .catch(function(){
+        btn.disabled=false; btn.textContent=label;
+        msg.innerHTML='Sorry, that did not go through. Please try again, or email <a href="mailto:thephilipsayeni@gmail.com?subject=Paperback%20order">thephilipsayeni@gmail.com</a>.';
+      });
+  });
+})();
+</script>
 </body>
 </html>
