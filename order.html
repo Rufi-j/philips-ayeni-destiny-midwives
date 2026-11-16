@@ -119,7 +119,7 @@ button:hover{background:#ffbd55}
 <script>
 // Paste the Google Apps Script web-app URL (ends in /exec) between the quotes to send orders to the Google Sheet.
 // While it is empty, the form falls back to Netlify Forms so no order is lost.
-var ORDER_ENDPOINT = '';
+var ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyFBzPOEa5murB_OGUI2AYmosKrC9TN9bhnY5iM9Emr1VfEhLbsBXGoYJsfUh_As8N4wA/exec';
 (function(){
   var form=document.querySelector('form[name="paperback-order"]');
   if(!form||!ORDER_ENDPOINT) return;
